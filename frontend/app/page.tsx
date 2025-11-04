@@ -1,7 +1,12 @@
 'use client';
 
-import ResultCard from '@/components/ResultCard';
 import React, { useState } from 'react';
+import ResultCard from '@/components/ResultCard';
+import LoadingSkeleton from '@/components/LoadingSkeleton';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import { saveAs } from 'file-saver';
 
 type Result = {
   position: number;
@@ -38,7 +43,6 @@ export default function Page() {
     setElapsed(null);
 
     const start = performance.now();
-
     try {
       const res = await fetch(`${apiUrl}/api/search`, {
         method: 'POST',
@@ -49,10 +53,8 @@ export default function Page() {
       const json = await res.json();
       const end = performance.now();
       setElapsed(end - start);
-
       if (!res.ok) throw new Error(json.error || 'Search failed');
 
-      // Detect cache flag
       setCached(!!json.cached);
       setData(json.data);
     } catch (err: any) {
@@ -62,47 +64,69 @@ export default function Page() {
     }
   }
 
+  function exportJSON() {
+    if (!data) return;
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    saveAs(blob, `${data.query.replace(/\s+/g, '_')}_results.json`);
+  }
+
   return (
     <div className="max-w-4xl mx-auto">
-      <form onSubmit={doSearch} className="mb-6 flex gap-2">
-        <input
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="Enter query (e.g., best node.js frameworks 2025)"
-          className="flex-1 px-4 py-2 border rounded"
-        />
-        <button
-          type="submit"
-          className="px-4 py-2 bg-sky-600 text-white rounded disabled:opacity-60"
-          disabled={loading || !q.trim()}
-        >
-          {loading ? 'Searching…' : 'Search'}
-        </button>
-      </form>
+      <div className="mb-6">
+        <div className="flex gap-3 items-center">
+          <Input
+            placeholder="Search (e.g., best node.js frameworks 2025)"
+            value={q}
+            onChange={(e) => setQ((e.target as HTMLInputElement).value)}
+            className="flex-1 shadow-input"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') doSearch();
+            }}
+          />
+          <Button onClick={() => doSearch()} disabled={loading || !q.trim()}>
+            {loading ? 'Searching…' : 'Search'}
+          </Button>
 
-      {/* Status indicators */}
-      {elapsed !== null && (
-        <div className="text-sm text-gray-500 mb-3">
-          ⏱️ Response time: {(elapsed / 1000).toFixed(2)}s{' '}
+          <Button variant="outline" onClick={() => { setQ(''); setData(null); setError(null); }}>
+            Clear
+          </Button>
+        </div>
+
+        <div className="mt-3 flex items-center gap-3">
+          {elapsed !== null && (
+            <div className="text-sm text-gray-400">
+              ⏱ {(elapsed / 1000).toFixed(2)}s
+            </div>
+          )}
+
           {cached && (
-            <span className="ml-2 px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs">
-              ⚡ Cached Result
-            </span>
+            <Badge className="bg-emerald-900/40 text-emerald-300 border border-emerald-700">
+              ⚡ Cached
+            </Badge>
+          )}
+
+          {data && (
+            <Button variant="ghost" size="sm" onClick={exportJSON}>
+              Export JSON
+            </Button>
           )}
         </div>
-      )}
+      </div>
 
-      {error && <div className="text-red-600 mb-4">{error}</div>}
+      {error && <div className="mb-4 text-red-500">{error}</div>}
 
-      {data && (
+      {/* Aggregate summary */}
+      {loading && <LoadingSkeleton />}
+
+      {!loading && data && (
         <>
-          <section className="mb-6">
-            <h2 className="font-semibold text-lg">Aggregate Summary</h2>
-            <p className="text-gray-700">{data.aggregateSummary || 'No summary available.'}</p>
+          <section className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-white/2 to-white/3 border border-white/6 shadow-inner">
+            <h2 className="text-lg font-semibold">Aggregate Summary</h2>
+            <p className="mt-2 text-gray-400">{data.aggregateSummary || 'No summary available.'}</p>
           </section>
 
           <section>
-            <h3 className="font-semibold mb-2 text-lg">Results</h3>
+            <h3 className="font-semibold mb-3">Results</h3>
             <div className="space-y-3">
               {data.results.map((r) => (
                 <ResultCard key={r.position} r={r} />
