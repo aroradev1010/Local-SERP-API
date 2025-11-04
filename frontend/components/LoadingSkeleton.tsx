@@ -8,7 +8,7 @@ export default function LoadingSkeleton() {
     return (
         <div className="space-y-4">
             {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="p-4 rounded-xl bg-gradient-to-br from-white/5 to-white/3 border border-white/5 backdrop-blur-md">
+                <div key={i} className="p-4 rounded-xl bg-linear-to-br from-white/5 to-white/3 border border-white/5 backdrop-blur-md">
                     <div className="flex items-center justify-between mb-3">
                         <div className="w-1/3">
                             <Skeleton className="h-5 w-full rounded" />

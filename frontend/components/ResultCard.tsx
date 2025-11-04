@@ -17,7 +17,7 @@ type Result = {
 
 export default function ResultCard({ r }: { r: Result }) {
     return (
-        <Card className="border border-white/6 bg-gradient-to-br from-white/2 to-white/1 p-0 shadow-sm overflow-hidden rounded-2xl">
+        <Card className="border border-white/6 bg-linear-to-br from-white/2 to-white/1 p-0 shadow-sm overflow-hidden rounded-2xl">
             <CardContent className="p-4">
                 <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">
