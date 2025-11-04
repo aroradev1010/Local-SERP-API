@@ -1,0 +1,90 @@
+[
+  {
+    "name": "SNID",
+    "value": "AICKk4yHX-HypxQYSJ1ux-AN58nLOZyhHlJkCyKSWATD6cjcNkgM-4bweOg7tu4n68eMKbppvHyNlMJB1nBSArlmIE9UUXVUSok",
+    "domain": ".google.com",
+    "path": "/verify",
+    "expires": 1778078044.744071,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "AEC",
+    "value": "AaJma5t5XEunVW7xnsAlKdhmR5YlIZ9cuarZb5-Z2ILUq-itkpBgPLIAy8o",
+    "domain": ".google.com",
+    "path": "/",
+    "expires": 1777818845.171939,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "YSC",
+    "value": "llgpc96UjTk",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None",
+    "partitionKey": "https://google.com",
+    "_crHasCrossSiteAncestor": true
+  },
+  {
+    "name": "VISITOR_INFO1_LIVE",
+    "value": "iEu5BD-d2HE",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1777818848.639565,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None",
+    "partitionKey": "https://google.com",
+    "_crHasCrossSiteAncestor": true
+  },
+  {
+    "name": "VISITOR_PRIVACY_METADATA",
+    "value": "CgJJThIEGgAgDA%3D%3D",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1777818848.63969,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None",
+    "partitionKey": "https://google.com",
+    "_crHasCrossSiteAncestor": true
+  },
+  {
+    "name": "__Secure-ROLLOUT_TOKEN",
+    "value": "CLDRg5Gpoeq9qAEQg8CEzdvYkAMY5MuczdvYkAM%3D",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1777818848.639358,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None",
+    "partitionKey": "https://google.com",
+    "_crHasCrossSiteAncestor": true
+  },
+  {
+    "name": "NID",
+    "value": "526=caXWeUnxp8_7e_jCvhiw0cdFxuBb9ZTe_18e44TQ6OpEv6n6MMMIR1jDlE_wNI1FmB16NVmpCGI46ip7li1znhRcfMdFvMsSEy_WsAMjhj2cZhCS2iBm8A9PzHb_lgMreFuNIX9nrx6-c_KbRrC8_IOVTJQ_MLvKOidu1UZ_hpmr0iPVbRIP9zt8f569pHKfuzxBpOgu7O-kQBV21RtXdG_HuXtVQnovyFEdvNsacnpamThEWEA9zEHb17xXeV3YSFtu",
+    "domain": ".google.com",
+    "path": "/",
+    "expires": 1778078044.589867,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "DV",
+    "value": "s0uL-v4tTa0ZEKMYZTqdNnGqK0j2pBk",
+    "domain": "www.google.com",
+    "path": "/",
+    "expires": 1762269176,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  }
+]
