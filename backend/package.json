@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "main": "dist/index.js",
     "scripts": {
-        "postinstall": "PLAYWRIGHT_BROWSERS_PATH=./.playwright-browsers npx playwright install chromium",
         "build": "tsc -p .",
         "start": "node dist/index.js",
         "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
